@@ -7,6 +7,12 @@ const initialState = {
     priority: 'medium',
     assigneeId: 1,
     labelIds: [1, 2, 3]
+  },
+  {
+    summary: "Some Issue",
+    priority: 'low',
+    assigneeId: 2,
+    labelIds: [5, 1, 3]
   }]
 }
 

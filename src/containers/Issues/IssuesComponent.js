@@ -7,7 +7,7 @@ class IssuesComponent extends Component {
   render() {
     return (
       <div>
-        <IssuesTable issuesData={issues} />
+        <IssuesTable issuesData={this.props.issues} />
       </div>
     )
   }
@@ -27,12 +27,12 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onListIssues: () => dispatch(actionCreators.issues()),
-    onCreateIssues: () => dispatch(actionCreators.issuesCreate()),
-    onEditIssues: () => dispatch(actionCreators.issuesEdit())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onListIssues: () => dispatch(actionCreators.issues()),
+//     onCreateIssues: (issue) => dispatch(actionCreators.issuesCreate(issue)),
+//     onEditIssues: (issues) => dispatch(actionCreators.issuesEdit(issue))
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssuesComponent);
+export default connect(mapStateToProps)(IssuesComponent);
