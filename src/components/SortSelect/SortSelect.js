@@ -1,23 +1,17 @@
 import React from 'react';
-import Select from '@atlaskit/single-select'
+import Select from '@atlaskit/select'
 import './SortSelect.scss'
+import { Sorting } from '../../common/selectData'
 
 const SortSelect = () => {
     return (
         <Select
-            className="single-select"
+            className="SortSelect"
             classNamePrefix="react-select"
             appearance="default"
-            options={[
-                { label: 'Summary', value: 'summary' },
-                { label: 'Assignee', value: 'assignee' },
-                { label: 'Priority', value: 'priority' },
-
-            ]}
+            options={Sorting}
             placeholder="Sort by ..."
-        >
-            <option>some option</option>
-        </Select>
+        />
     )
 }
 

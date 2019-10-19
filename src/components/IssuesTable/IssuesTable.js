@@ -1,14 +1,29 @@
-import React from 'react';
+import React, {Component, setState} from 'react';
 import './IssuesTable.scss';
 import SortSelect from '../SortSelect/SortSelect'
 import ButtonCreate from '../ButtonCreate/ButtonCreate';
+import { Link } from 'react-router-dom';
+import ModalD from '../ModalD/ModalD'
 
-const IssuesTable = (props) => {
+class IssuesTable extends Component {
+
+  state= { isOpen: false };
+
+  open = () => this.setState({ isOpen: true });
+
+  close = () => this.setState({ isOpen: false });
+
+  onSubmit = (data) => console.log(data);
+    
+    render(){
+    const { isOpen } = this.state;
     return (
-        <div>
-            <ButtonCreate>Create new issue</ButtonCreate>
-            <SortSelect value="some value" inputValue="another value"/>
-            <table className="IssuesTable">
+        <div className="IssuesTable">
+            <Link to="/create-issue">
+                <ButtonCreate type="button" appearance="primary">Create new issue</ButtonCreate>
+            </Link>
+            <SortSelect/>
+            <table >
                 <thead>
                     <tr>
                         <td>Issue</td>
@@ -18,20 +33,22 @@ const IssuesTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.issuesData.map(dataEl => {
+                    {this.props.issuesData.map(dataEl => {
                         return (
                             <tr key={dataEl.assigneeId}>
-                                <td>{dataEl.summary}</td>
-                                <td>{dataEl.priority}</td>
+                                <td onClick={this.open}>{dataEl.summary}</td>
                                 <td>{dataEl.assigneeId}</td>
                                 <td>{dataEl.labelIds}</td>
+                                <td>{dataEl.priority}</td>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
+           <ModalD isOpen={isOpen} close={this.close} submit={this.onSubmit}/>
         </div>
     )
+ }
 }
 
 export default IssuesTable;

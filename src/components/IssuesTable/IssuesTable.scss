@@ -1,15 +1,32 @@
-.IssuesTable{
-    border-collapse: collapse;
-    width: 100%;
+.IssuesTable {
+    display: flex;
+    flex-direction: column;
 
-    thead{
+    button{
+        width: 150px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    thead {
         background-color: darkgrey;
     }
 
-    th, td {
+    th,
+    td {
         text-align: left;
         padding: 8px;
-      }
+    }
+    td:first-of-type{
+        cursor: pointer;
+    }
 
-      tr:nth-child(even) {background-color: #f2f2f2;}
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+
 }

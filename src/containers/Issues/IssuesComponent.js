@@ -2,23 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/action';
 import IssuesTable from '../../components/IssuesTable/IssuesTable'
+import './IssuesComponent.scss'
 
 class IssuesComponent extends Component {
   render() {
     return (
-      <div>
+      <div className="IssuesComponent">
         <IssuesTable issuesData={this.props.issues} />
       </div>
     )
   }
 }
 
-const issues = {
-  summary: "secondIssue",
-  priority: 'low',
-  assigneeId: 2,
-  labelIds: [4, 2, 3]
-}
 
 const mapStateToProps = state => {
   return {

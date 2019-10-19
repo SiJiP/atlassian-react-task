@@ -1,5 +1,3 @@
-import * as actionType from '../actions/action'
-
 const initialState = {
   users: [],
   issues: [{
@@ -18,14 +16,19 @@ const initialState = {
 
 const reducer =  (state = initialState, action) => {
     switch (action.type) {
-     case actionType.issues:
+     case 'ISSUES_LIST':
       return {
         ...state
       }
-      case actionType.issuesCreate:
+      case 'CREATE_ISSUE':
         return {
           ...state,
-          issues: {}
+          issues: [...state.issues, action.payload]
+        }
+      case 'EDIT_ISSUE':
+        return {
+          ...state,
+          issues: [...state.issues, action.payload]
         }
      default:
       return state
