@@ -1,6 +1,6 @@
-
-export const issues = () => ({
-    type: 'ISSUES_LIST'
+export const issues = (payload) => ({
+    type: 'ISSUES_LIST',
+    payload: payload
 })
 
 export const issuesCreate = (payload) => ({

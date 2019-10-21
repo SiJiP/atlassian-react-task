@@ -19,7 +19,7 @@ class CreateIssue extends Component {
         return (
             <div className="CreateIssue">
                 <h3>{this.props.children}</h3>
-                <DefaultForm onSubmit={this.onSubmit}>
+                <DefaultForm onSubmit={this.onSubmit} usersList={this.props.users}>
                     <Link to="/">
                         <ButtonCreate type="submit" appearance="subtle">
                                 Cancel
@@ -34,12 +34,15 @@ class CreateIssue extends Component {
     }
 };
 
+const mapStateToProps = state => {
+    return {
+      users: state.users.users
+    }
+  };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onListIssues: () => dispatch(actionCreators.issues()),
-        onCreateIssues: (issue) => dispatch(actionCreators.issuesCreate(issue)),
-        onEditIssues: (issue) => dispatch(actionCreators.issuesEdit(issue))
+        onCreateIssues: (issue) => dispatch(actionCreators.issuesCreate(issue))
     }
 }
-export default connect(null, mapDispatchToProps)(CreateIssue);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);

@@ -1,53 +1,102 @@
 import React from 'react';
 import Form, { Field } from '@atlaskit/form';
-import ButtonCreate from '../ButtonCreate/ButtonCreate';
 import TextField from '@atlaskit/textfield';
-import { Link } from 'react-router-dom'
 import './DefaultForm.scss'
 import Select from '@atlaskit/select/dist/cjs/Select';
 import { CheckboxField, Fieldset } from '@atlaskit/form';
 import { Checkbox } from '@atlaskit/checkbox';
-import { Priority, Assignee } from '../../common/selectData'
+import { Priority } from '../../common/selectData'
 
 
 const DefaultForm = (props) => {
 
+    let defaultIndexUser = null;
+    let defaultIndexPriority = null
+
+    const usersForOptions = () => {
+        const result = props.usersList.reduce((accum, current, index) => {
+            if (props.issueData && current.id === props.issueData.assigneeId) {
+                defaultIndexUser = index
+            }
+            return [...accum, {
+                label: current.displayName,
+                id: current.id
+            }]
+        }, []);
+        return result;
+    }
+
+    const priorityForOptions = () => {
+        if (props.issueData) {
+            Priority.forEach((el, index) => {
+                if (el.value === props.issueData.priority) {
+                    defaultIndexPriority = index
+                }
+            })
+        }
+    }
+
+    priorityForOptions()
+
     return (
-    <Form onSubmit={props.onSubmit}>
-    {({ formProps }) => {
-        return(
-        <form {...formProps}>
-            <Field name="summary" defaultValue="" label="Issue summary" isRequired>
-                {({ fieldProps }) => <TextField {...fieldProps} />}
-            </Field>
-            <Field name="assigneeId" defaultValue="" label="Assignee">
-                {({ fieldProps }) => <Select {...fieldProps}  options={Assignee}/>}
-            </Field>
-            <Field name="priority" defaultValue={Priority[1]} label="Priority">
-                {({ fieldProps }) => <Select {...fieldProps} options={Priority}/>}
-            </Field>
-            <Fieldset legend="Labels">
-                <CheckboxField name="labelId" value="1">
-                    {({ fieldProps }) => <Checkbox {...fieldProps} label="Label 1" />}
-                </CheckboxField>
-                <CheckboxField name="labelId" value="2">
-                    {({ fieldProps }) => (
-                        <Checkbox {...fieldProps} label="Another Label" />
-                    )}
-                </CheckboxField>
-                <CheckboxField name="labelId" value="3">
-                    {({ fieldProps }) => (
-                        <Checkbox {...fieldProps} label="New Label" />
-                    )}
-                </CheckboxField>
-            </Fieldset>
+        <Form onSubmit={props.onSubmit}>
+            {({ formProps }) => {
+                return (
+                    <form {...formProps}>
+                        <Field name="summary" defaultValue={(props.issueData) ? props.issueData.summary : ''} label="Issue summary" isRequired>
+                            {({ fieldProps }) => <TextField {...fieldProps} />}
+                        </Field>
+                        <Field name="assigneeId" defaultValue={usersForOptions()[defaultIndexUser]} label="Assignee">
+                            {({ fieldProps }) => <Select {...fieldProps} options={usersForOptions()} />}
+                        </Field>
+                        <Field name="priority" defaultValue={Priority[defaultIndexPriority]} label="Priority">
+                            {({ fieldProps }) => <Select {...fieldProps} options={Priority} />}
+                        </Field>
+                        <Fieldset legend="Labels">
+                            <CheckboxField name="labelId" value="1" >
+                                {({ fieldProps }) => {
+                                    let res = false;
+                                    if (props.issueData) {
+                                        res = props.issueData.labelIds.some(el => {
+                                            return el.toString() === fieldProps.value
+                                        })
 
-           {props.children}
+                                    }
+                                    return <Checkbox {...fieldProps} label="Label 1" defaultChecked={res}/>
+                                }
+                                }
+                            </CheckboxField>
+                            <CheckboxField name="labelId" value="2" >
+                                {({ fieldProps }) => {
+                                    let res = false;
+                                    if (props.issueData) {
+                                        res = props.issueData.labelIds.some(el => {
+                                            return el.toString() === fieldProps.value
+                                        })
+                                    }
+                                    return <Checkbox {...fieldProps} label="Another Label" defaultChecked={res} />
+                                }}
+                            </CheckboxField>
+                            <CheckboxField name="labelId" value="3" >
+                                {({ fieldProps }) => {
+                                    let res = false;
+                                    if (props.issueData) {
+                                        res = props.issueData.labelIds.some(el => {
+                                            return el.toString() === fieldProps.value
+                                        })
+                                    }
+                                    return <Checkbox {...fieldProps} label="New Label" defaultChecked={res} />
+                                }}
+                            </CheckboxField>
+                        </Fieldset>
 
-        </form>
-)}}
-</Form>
-)
+                        {props.children}
+
+                    </form>
+                )
+            }}
+        </Form>
+    )
 }
 
 export default DefaultForm;
