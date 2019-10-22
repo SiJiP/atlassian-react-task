@@ -6,9 +6,19 @@ import IssuesTable from '../../components/IssuesTable/IssuesTable'
 import './IssuesComponent.scss';
 import issueData from '../../common/issues';
 import usersList from '../../common/users';
+import { getSortingIssues } from '../../store/selectors/select'
 
 class IssuesComponent extends Component {
 
+
+  changeSorting = (direction) => {
+    if(direction){
+      this.props.onSortOption(direction.value)
+    } else {
+      this.props.onSortOption('default')
+    }
+    console.log(this.props.issues)
+  }
   componentDidMount(){
     if(this.props.issues.length === 0){
       this.props.onListIssues(issueData);
@@ -17,19 +27,22 @@ class IssuesComponent extends Component {
         this.props.onSetUsers(usersList)
     }
   }
+
   render() {
     return (
       <div className="IssuesComponent">
-        <IssuesTable issuesData={this.props.issues} usersData={this.props.users} />
+        <IssuesTable issuesData={this.props.issues} usersData={this.props.users} sortChange={this.changeSorting} />
       </div>
     )
   }
 }
 
 
-const mapStateToProps = state => {
+
+
+const mapStateToProps = (state) => {
   return {
-    issues: state.issues.issues,
+    issues: getSortingIssues(state),
     users: state.users.users
   }
 };
@@ -39,7 +52,8 @@ const mapDispatchToProps = dispatch => {
     onListIssues: (issues) => dispatch(actionCreators.issues(issues)),
     onCreateIssues: (issue) => dispatch(actionCreators.issuesCreate(issue)),
     onEditIssues: (issue) => dispatch(actionCreators.issuesEdit(issue)),
-    onSetUsers: (users) => dispatch(usersActions.usersList(users))
+    onSetUsers: (users) => dispatch(usersActions.usersList(users)),
+    onSortOption: (option) => dispatch(actionCreators.sortOption(option))
   }
 }
 

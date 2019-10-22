@@ -1,5 +1,6 @@
 const initialState = {
-  issues: []
+  issues: [],
+  sorting: 'default'
 }
 
 const reducer =  (state = initialState, action) => {
@@ -17,7 +18,14 @@ const reducer =  (state = initialState, action) => {
       case 'EDIT_ISSUE':
         return {
           ...state,
-          issues: [...state.issues, action.payload]
+          issues: state.issues.map(issue => {
+            return (issue.id === action.payload.id) ? action.payload : issue
+          })
+        }
+        case 'SORTING':
+        return {
+          ...state,
+          sorting: action.payload
         }
      default:
       return state

@@ -36,8 +36,6 @@ const DefaultForm = (props) => {
         }
     }
 
-    priorityForOptions()
-
     return (
         <Form onSubmit={props.onSubmit}>
             {({ formProps }) => {
@@ -49,6 +47,7 @@ const DefaultForm = (props) => {
                         <Field name="assigneeId" defaultValue={usersForOptions()[defaultIndexUser]} label="Assignee">
                             {({ fieldProps }) => <Select {...fieldProps} options={usersForOptions()} />}
                         </Field>
+                        {priorityForOptions()}
                         <Field name="priority" defaultValue={Priority[defaultIndexPriority]} label="Priority">
                             {({ fieldProps }) => <Select {...fieldProps} options={Priority} />}
                         </Field>
@@ -56,7 +55,7 @@ const DefaultForm = (props) => {
                             <CheckboxField name="labelId" value="1" >
                                 {({ fieldProps }) => {
                                     let res = false;
-                                    if (props.issueData) {
+                                    if (props.issueData && props.issueData.labelIds) {
                                         res = props.issueData.labelIds.some(el => {
                                             return el.toString() === fieldProps.value
                                         })
@@ -69,7 +68,7 @@ const DefaultForm = (props) => {
                             <CheckboxField name="labelId" value="2" >
                                 {({ fieldProps }) => {
                                     let res = false;
-                                    if (props.issueData) {
+                                    if (props.issueData && props.issueData.labelIds) {
                                         res = props.issueData.labelIds.some(el => {
                                             return el.toString() === fieldProps.value
                                         })
@@ -80,7 +79,7 @@ const DefaultForm = (props) => {
                             <CheckboxField name="labelId" value="3" >
                                 {({ fieldProps }) => {
                                     let res = false;
-                                    if (props.issueData) {
+                                    if (props.issueData && props.issueData.labelIds) {
                                         res = props.issueData.labelIds.some(el => {
                                             return el.toString() === fieldProps.value
                                         })

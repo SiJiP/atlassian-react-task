@@ -7,23 +7,34 @@ import ModalD from '../ModalD/ModalD';
 import * as actionCreators from '../../store/actions/action';
 import { connect } from 'react-redux';
 
+
 class IssuesTable extends Component {
 
-  state= {
+  state = {
       isOpen: false,
-      currentElement: null };
+      currentElement: null,
+      sortingOptions: null,
+    };
+
 
   open = (el) => this.setState({ isOpen: true, currentElement: el});
 
   close = () => this.setState({ isOpen: false });
 
-  onSubmit = (data) => {
+  submitEdit = (data) => {
     const refactorData = {...data};
     refactorData.assigneeId = data.assigneeId.id
-    refactorData.priority = data.priority.value
-    this.props.onCreateIssues(refactorData)
-    console.log(refactorData)
+    refactorData.priority = data.priority.value;
+    refactorData.id = this.state.currentElement.id
+    this.props.onEditIssue(refactorData)
+    this.close();
   }
+
+  componentDidMount(){
+      console.log(this.props)
+  }
+ 
+
 
 
 
@@ -34,7 +45,7 @@ class IssuesTable extends Component {
             <Link to="/create-issue">
                 <ButtonCreate type="button" appearance="primary">Create new issue</ButtonCreate>
             </Link>
-            <SortSelect/>
+            <SortSelect direction={this.props.sortChange}/>
             <table >
                 <thead>
                     <tr>
@@ -47,7 +58,7 @@ class IssuesTable extends Component {
                 <tbody>
                     {(this.props.issuesData) ? this.props.issuesData.map((dataEl, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={dataEl.id}>
                                 <td onClick={() => this.open(dataEl)}>{dataEl.summary}</td>
                                 <td>{(() => {
                                     let res = null
@@ -65,7 +76,7 @@ class IssuesTable extends Component {
                 </tbody>
             </table>
             {(this.state.isOpen) ? (
-                <ModalD isOpen={isOpen} close={this.close} submit={this.onSubmit} issueData={this.state.currentElement} usersData={this.props.usersData}/>
+                <ModalD isOpen={isOpen} close={this.close} submit={this.submitEdit} issueData={this.state.currentElement} usersData={this.props.usersData}/>
             ) : null }
         </div>
     )
@@ -74,7 +85,8 @@ class IssuesTable extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onEditIssue: (issue) => dispatch(actionCreators.issuesEdit(issue))
+        onEditIssue: (issue) => dispatch(actionCreators.issuesEdit(issue)),
+        onCreateIssues: (issue) => dispatch(actionCreators.issuesCreate(issue))
     }
 }
 

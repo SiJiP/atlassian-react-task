@@ -3,7 +3,7 @@ import Select from '@atlaskit/select'
 import './SortSelect.scss'
 import { Sorting } from '../../common/selectData'
 
-const SortSelect = () => {
+const SortSelect = (props) => {
     return (
         <Select
             className="SortSelect"
@@ -11,6 +11,8 @@ const SortSelect = () => {
             appearance="default"
             options={Sorting}
             placeholder="Sort by ..."
+            isClearable
+            onChange={props.direction}
         />
     )
 }

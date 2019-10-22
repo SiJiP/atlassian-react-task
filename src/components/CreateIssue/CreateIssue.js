@@ -4,15 +4,35 @@ import DefaultForm from '../DefaultForm/DefaultForm';
 import * as actionCreators from '../../store/actions/action';
 import { connect } from 'react-redux';
 import ButtonCreate from '../ButtonCreate/ButtonCreate';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class CreateIssue extends Component {
+
+    state = {
+        redirect: false
+    }
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = () => {
+        if(this.state.redirect){
+            return <Redirect to="/" />
+        }
+    }
 
     onSubmit = (data) => {
         const refactorData = {...data};
         refactorData.assigneeId = data.assigneeId.id
         refactorData.priority = data.priority.value
-        this.props.onCreateIssues(refactorData)
+        refactorData.id = Math.floor(Math.random() * 10e3)
+        this.props.onCreateIssues(refactorData);
+        this.setState({
+            redirect: true
+        })
         console.log(refactorData)
     }
     render() {
@@ -25,10 +45,11 @@ class CreateIssue extends Component {
                                 Cancel
                         </ButtonCreate>
                     </Link>
-                    <ButtonCreate type="submit" appearance="primary">
-                        Create issues
-                    </ButtonCreate>
+                        <ButtonCreate type="submit" appearance="primary">
+                            Create issues
+                        </ButtonCreate>
                 </DefaultForm>
+                {(this.state.redirect) ? <Redirect to="/" /> : null}
             </div>
         )
     }

@@ -12,3 +12,8 @@ export const issuesEdit = (payload) => ({
     type: 'EDIT_ISSUE',
     payload: payload
 })
+
+export const sortOption = (payload) => ({
+    type: 'SORTING',
+    payload: payload
+})
