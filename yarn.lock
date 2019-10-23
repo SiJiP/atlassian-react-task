@@ -21,6 +21,18 @@
     "@babel/runtime" "^7.0.0"
     tslib "^1.9.3"
 
+"@atlaskit/breadcrumbs@^9.2.2":
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/@atlaskit/breadcrumbs/-/breadcrumbs-9.2.2.tgz#6975e7d1e986a8aad722d54d7ad4b4a4dc7ff187"
+  integrity sha512-5VXVNopu1OhnYmSphNA2JplAQpFhZWIy7maidttR/GjbN9PwCaFnUncshdrs76aN4UQzwJjlHlODI5FBdCAi0A==
+  dependencies:
+    "@atlaskit/analytics-next" "^6.3.1"
+    "@atlaskit/button" "^13.3.3"
+    "@atlaskit/theme" "^9.2.4"
+    "@atlaskit/tooltip" "^15.1.1"
+    "@babel/runtime" "^7.0.0"
+    tslib "^1.9.3"
+
 "@atlaskit/button@^13.3.3":
   version "13.3.3"
   resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-13.3.3.tgz#bc016867e1b97c3b2ea4d4d137aef5643a1756c8"
@@ -170,6 +182,15 @@
     react-scrolllock "^3.0.2"
     react-transition-group "^2.2.1"
     tiny-invariant "^0.0.3"
+    tslib "^1.9.3"
+
+"@atlaskit/page-header@^9.0.14":
+  version "9.0.14"
+  resolved "https://registry.yarnpkg.com/@atlaskit/page-header/-/page-header-9.0.14.tgz#0a7a6aa2c4facdf1d667cd3ba3ce6e9819ad8b87"
+  integrity sha512-PO+dtSjjWF2f7YHEbNN0zcCMkeNQLjg+IqbTa7OnRThdC9ar8wfWtk+uVEpPcO2EX6lR0UsFKL1uadjWQhDa6w==
+  dependencies:
+    "@atlaskit/theme" "^9.2.4"
+    "@babel/runtime" "^7.0.0"
     tslib "^1.9.3"
 
 "@atlaskit/popper@^3.1.6":

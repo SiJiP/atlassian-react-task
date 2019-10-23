@@ -29,7 +29,7 @@ const DefaultForm = (props) => {
     const priorityForOptions = () => {
         if (props.issueData) {
             Priority.forEach((el, index) => {
-                if (el.value === props.issueData.priority) {
+                if (el.value === props.issueData.priority.value) {
                     defaultIndexPriority = index
                 }
             })
@@ -44,7 +44,7 @@ const DefaultForm = (props) => {
                         <Field name="summary" defaultValue={(props.issueData) ? props.issueData.summary : ''} label="Issue summary" isRequired>
                             {({ fieldProps }) => <TextField {...fieldProps} />}
                         </Field>
-                        <Field name="assigneeId" defaultValue={usersForOptions()[defaultIndexUser]} label="Assignee">
+                        <Field name="assigneeId" defaultValue={usersForOptions()[defaultIndexUser]} label="Assignee" isRequired>
                             {({ fieldProps }) => <Select {...fieldProps} options={usersForOptions()} />}
                         </Field>
                         {priorityForOptions()}

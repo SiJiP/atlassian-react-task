@@ -31,7 +31,7 @@ const issuesData = [{
     summary: "coffee time",
     priority: { label: 'Low', value: '1' },
     assigneeId: 268,
-    labelIds: [5]
+    labelIds: [3]
   },
   {
     id: 82213,
@@ -45,7 +45,7 @@ const issuesData = [{
     summary: "last issue",
     priority: { label: 'Low', value: '1' },
     assigneeId: 268,
-    labelIds: []
+    labelIds: [2]
   }]
 
   export default issuesData;

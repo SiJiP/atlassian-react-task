@@ -12,6 +12,8 @@ import Lozenge from '@atlaskit/lozenge';
 import PriorityLowest from '@atlaskit/icon-priority/glyph/priority-lowest';
 import PriorityHighest from '@atlaskit/icon-priority/glyph/priority-highest';
 import PriorityMedium from '@atlaskit/icon-priority/glyph/priority-medium';
+import PHeader from '../PageHeader/PageHeader'
+import { BreadcrumbsStateless, BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 
 
 class IssuesTable extends Component {
@@ -47,6 +49,13 @@ class IssuesTable extends Component {
         })
     }
 
+    breadcrumbs = (
+        <BreadcrumbsStateless onExpand={() => {}}>
+          <BreadcrumbsItem text="Atlassian project" key="Atlassian project" href="/"/>
+          <BreadcrumbsItem text="Jira issues" key="Jira issues" href="/"/>
+        </BreadcrumbsStateless>
+      );
+
     checkPriority = (name) => {
         switch(name){
             case 'Low':
@@ -81,6 +90,7 @@ class IssuesTable extends Component {
         const { isOpen } = this.state;
         return (
             <div className="IssuesTable">
+                <PHeader breadcrumbs={this.breadcrumbs}/>
                 <Link to="/create-issue">
                     <ButtonCreate type="button" appearance="primary">Create new issue</ButtonCreate>
                 </Link>

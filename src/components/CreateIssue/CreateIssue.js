@@ -4,7 +4,9 @@ import DefaultForm from '../DefaultForm/DefaultForm';
 import * as actionCreators from '../../store/actions/action';
 import { connect } from 'react-redux';
 import ButtonCreate from '../ButtonCreate/ButtonCreate';
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom';
+import PHeader from '../PageHeader/PageHeader';
+import { BreadcrumbsStateless, BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 
 class CreateIssue extends Component {
 
@@ -23,6 +25,12 @@ class CreateIssue extends Component {
             return <Redirect to="/" />
         }
     }
+    breadcrumbs = (
+        <BreadcrumbsStateless onExpand={() => {}}>
+          <BreadcrumbsItem text="Atlassian project" key="Atlassian project" href="/"/>
+          <BreadcrumbsItem text="Create issue" key="Create issue" href="/create-issue"/>
+        </BreadcrumbsStateless>
+      );
 
     onSubmit = (data) => {
         const refactorData = {...data};
@@ -38,7 +46,7 @@ class CreateIssue extends Component {
     render() {
         return (
             <div className="CreateIssue">
-                <h3>{this.props.children}</h3>
+                <PHeader breadcrumbs={this.breadcrumbs} />
                 <DefaultForm onSubmit={this.onSubmit} usersList={this.props.users}>
                     <Link to="/">
                         <ButtonCreate type="submit" appearance="subtle">

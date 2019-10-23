@@ -10,7 +10,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Jira issues</h1>
         <Switch>
           <Route path="/create-issue" component={ CreateIssue }></Route>
           <Route path="/" component={ IssuesComponent }></Route>
