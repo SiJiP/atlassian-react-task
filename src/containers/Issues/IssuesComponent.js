@@ -10,6 +10,13 @@ import { getSortingIssues } from '../../store/selectors/select'
 
 class IssuesComponent extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      sortData: props.issues
+    }
+  }
+
 
   changeSorting = (direction) => {
     if(direction){
@@ -17,8 +24,8 @@ class IssuesComponent extends Component {
     } else {
       this.props.onSortOption('default')
     }
-    console.log(this.props.issues)
   }
+
   componentDidMount(){
     if(this.props.issues.length === 0){
       this.props.onListIssues(issueData);
@@ -41,8 +48,9 @@ class IssuesComponent extends Component {
 
 
 const mapStateToProps = (state) => {
+  console.log(getSortingIssues(state))
   return {
-    issues: getSortingIssues(state),
+    issues: state.issues.issues,
     users: state.users.users
   }
 };

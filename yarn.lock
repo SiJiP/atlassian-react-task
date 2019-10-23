@@ -91,6 +91,14 @@
     shallow-equal "^1.0.0"
     tiny-invariant "^0.0.3"
 
+"@atlaskit/icon-priority@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/icon-priority/-/icon-priority-5.0.1.tgz#b65b9b99ba044d6caefa3f02c4b82f1714182955"
+  integrity sha512-q9bMzkqhX2AG/nmd83NsLGLprwL+bz2DhYRHHnWc+yHBXJT0SDM0IwN62ibntw6ghU/onUkWL39xHsnuLz/oqg==
+  dependencies:
+    "@atlaskit/theme" "^9.1.6"
+    tslib "^1.9.3"
+
 "@atlaskit/icon@^19.0.6":
   version "19.0.8"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-19.0.8.tgz#9628f6f5d9bf93baedfeb006d4fc719d008e1401"
@@ -132,6 +140,16 @@
     popper.js "^1.14.1"
     raf-schd "^2.1.0"
     react-scrolllock "^3.0.2"
+
+"@atlaskit/lozenge@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/lozenge/-/lozenge-9.1.1.tgz#3834fcfdc8170f5d23453e90f73035042ecc99be"
+  integrity sha512-9gmfw7xiKOtDNRTagzfzrW87XKBrNrA0hjZMzoQ7mkH91nFcYp4wwQa2kkE7NZ9w1T1lWB5kO4z4WA9AD0hR9w==
+  dependencies:
+    "@atlaskit/theme" "^9.2.4"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/core" "^10.0.9"
+    tslib "^1.9.3"
 
 "@atlaskit/modal-dialog@^10.3.4":
   version "10.3.4"

@@ -13,13 +13,21 @@ export const getSortingIssues = createSelector(
     getIssues,
     getOption,
     (issues, sortOption) => {
-        console.log(sortOption)
-        if(sortOption === 'default'){
-        return issues
-        }else{
-            return issues.sort((a, b) => {
-                return a[sortOption] > b[sortOption] ? 1: -1
-            })
+        switch(sortOption){
+            case 'summary':
+                return [...issues].sort((a, b) => {
+                    return a.summary.toLowerCase() > b.summary.toLowerCase() ? 1: -1;
+                });
+            case 'priority':
+                return [...issues].sort((a, b) => {
+                    return a.priority.value < b.priority.value ? 1 : -1;
+                });
+            case 'assignee':
+                    return [...issues].sort((a, b) => {
+                        return a.assigneeId > b.assigneeId ? 1: -1;
+                    });
+            default:
+                return issues
         }
     }
 )

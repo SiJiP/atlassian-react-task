@@ -52,7 +52,7 @@ const DefaultForm = (props) => {
                             {({ fieldProps }) => <Select {...fieldProps} options={Priority} />}
                         </Field>
                         <Fieldset legend="Labels">
-                            <CheckboxField name="labelId" value="1" >
+                            <CheckboxField name="labelIds" value="1" >
                                 {({ fieldProps }) => {
                                     let res = false;
                                     if (props.issueData && props.issueData.labelIds) {
@@ -65,7 +65,7 @@ const DefaultForm = (props) => {
                                 }
                                 }
                             </CheckboxField>
-                            <CheckboxField name="labelId" value="2" >
+                            <CheckboxField name="labelIds" value="2" >
                                 {({ fieldProps }) => {
                                     let res = false;
                                     if (props.issueData && props.issueData.labelIds) {
@@ -76,7 +76,7 @@ const DefaultForm = (props) => {
                                     return <Checkbox {...fieldProps} label="Another Label" defaultChecked={res} />
                                 }}
                             </CheckboxField>
-                            <CheckboxField name="labelId" value="3" >
+                            <CheckboxField name="labelIds" value="3" >
                                 {({ fieldProps }) => {
                                     let res = false;
                                     if (props.issueData && props.issueData.labelIds) {

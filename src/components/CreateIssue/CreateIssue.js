@@ -27,7 +27,7 @@ class CreateIssue extends Component {
     onSubmit = (data) => {
         const refactorData = {...data};
         refactorData.assigneeId = data.assigneeId.id
-        refactorData.priority = data.priority.value
+        // refactorData.priority = data.priority.value
         refactorData.id = Math.floor(Math.random() * 10e3)
         this.props.onCreateIssues(refactorData);
         this.setState({
