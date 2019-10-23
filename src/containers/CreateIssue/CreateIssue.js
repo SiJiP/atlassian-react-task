@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './CreateIssue.scss'
-import DefaultForm from '../DefaultForm/DefaultForm';
+import DefaultForm from '../../components/DefaultForm/DefaultForm';
 import * as actionCreators from '../../store/actions/action';
 import { connect } from 'react-redux';
-import ButtonCreate from '../ButtonCreate/ButtonCreate';
+import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import { Link, Redirect } from 'react-router-dom';
-import PHeader from '../PageHeader/PageHeader';
+import PHeader from '../../components/PageHeader/PageHeader';
 import { BreadcrumbsStateless, BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 
 class CreateIssue extends Component {

@@ -5,7 +5,7 @@ import './DefaultForm.scss'
 import Select from '@atlaskit/select/dist/cjs/Select';
 import { CheckboxField, Fieldset } from '@atlaskit/form';
 import { Checkbox } from '@atlaskit/checkbox';
-import { Priority } from '../../common/selectData'
+import { Priority } from '../../common/selectData';
 
 
 const DefaultForm = (props) => {
@@ -52,6 +52,7 @@ const DefaultForm = (props) => {
                             {({ fieldProps }) => <Select {...fieldProps} options={Priority} />}
                         </Field>
                         <Fieldset legend="Labels">
+
                             <CheckboxField name="labelIds" value="1" >
                                 {({ fieldProps }) => {
                                     let res = false;
@@ -61,7 +62,7 @@ const DefaultForm = (props) => {
                                         })
 
                                     }
-                                    return <Checkbox {...fieldProps} label="Label 1" defaultChecked={res}/>
+                                    return <Checkbox {...fieldProps} label="Label 1" defaultChecked={res} />
                                 }
                                 }
                             </CheckboxField>
@@ -73,10 +74,10 @@ const DefaultForm = (props) => {
                                             return el.toString() === fieldProps.value
                                         })
                                     }
-                                    return <Checkbox {...fieldProps} label="Another Label" defaultChecked={res} />
+                                    return <Checkbox {...fieldProps} defaultChecked={res} label="Another Label" />
                                 }}
                             </CheckboxField>
-                            <CheckboxField name="labelIds" value="3" >
+                            <CheckboxField name="labelIds" value="3">
                                 {({ fieldProps }) => {
                                     let res = false;
                                     if (props.issueData && props.issueData.labelIds) {

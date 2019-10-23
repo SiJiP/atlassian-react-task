@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import './IssuesTable.scss';
-import SortSelect from '../SortSelect/SortSelect'
-import ButtonCreate from '../ButtonCreate/ButtonCreate';
+import SortSelect from '../../components/SortSelect/SortSelect'
+import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import { Link } from 'react-router-dom';
-import ModalD from '../ModalD/ModalD';
+import ModalD from '../../components/ModalD/ModalD';
 import * as actionCreators from '../../store/actions/action';
 import { connect } from 'react-redux';
-import { getSortingIssues } from '../../store/selectors/select';
 import { Label } from '../../common/selectData';
 import Lozenge from '@atlaskit/lozenge';
 import PriorityLowest from '@atlaskit/icon-priority/glyph/priority-lowest';
 import PriorityHighest from '@atlaskit/icon-priority/glyph/priority-highest';
 import PriorityMedium from '@atlaskit/icon-priority/glyph/priority-medium';
-import PHeader from '../PageHeader/PageHeader'
+import PHeader from '../../components/PageHeader/PageHeader'
 import { BreadcrumbsStateless, BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 
 
@@ -43,7 +42,7 @@ class IssuesTable extends Component {
         return Label.filter(a => {
             if (dataEl) {
                 return dataEl.some(b => {
-                    return a.id === b
+                    return +a.id === +b
                 })
             }
         })
@@ -82,7 +81,7 @@ class IssuesTable extends Component {
     }
 
     static getDerivedStateFromProps(props) {
-        return { issuesData: props.issues };
+        return { issuesData: props.issuesData };
     }
 
 
@@ -138,12 +137,7 @@ class IssuesTable extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        issues: getSortingIssues(state),
-        users: state.users.users
-    }
-};
+
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -152,4 +146,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssuesTable);
+export default connect(null, mapDispatchToProps)(IssuesTable);

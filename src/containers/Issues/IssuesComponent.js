@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/action';
 import * as usersActions from '../../store/actions/users'
-import IssuesTable from '../../components/IssuesTable/IssuesTable'
+import IssuesTable from '../IssuesTable/IssuesTable'
 import './IssuesComponent.scss';
 import issueData from '../../common/issues';
 import usersList from '../../common/users';
@@ -48,9 +48,8 @@ class IssuesComponent extends Component {
 
 
 const mapStateToProps = (state) => {
-  console.log(getSortingIssues(state))
   return {
-    issues: state.issues.issues,
+    issues: getSortingIssues(state),
     users: state.users.users
   }
 };

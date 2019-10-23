@@ -6,16 +6,18 @@ import './ModalD.scss'
 
 const ModalD = (props) => {
     return (
-      <div className="ModalD">
         <ModalTransition>
           {props.isOpen && (
             <ModalDialog
-              onClose={props.close}
               heading="Edit issue"
-              style={{padding: '32px'}}
+              onClose={props.close}
+              width="large"
+              height={500}
               components={{
                 Container:() => {
                   return (
+                    <div className="modalDialog">
+                    <h1>Edit Issue</h1>
                     <DefaultForm onSubmit={props.submit} issueData={props.issueData} usersList={props.usersData}>
                         <ButtonCreate type="button" onClick={props.close} appearance="subtle">
                                 Cancel
@@ -24,13 +26,13 @@ const ModalD = (props) => {
                           Edit issues
                       </ButtonCreate>
                     </DefaultForm>
+                    </div>
                   )
                 }
               }}>
             </ModalDialog>
           )}
         </ModalTransition>
-        </div>
     )
 }
 

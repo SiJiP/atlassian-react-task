@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import  IssuesComponent  from './containers/Issues/IssuesComponent';
 import { Route, Switch } from 'react-router-dom';
-import CreateIssue from './components/CreateIssue/CreateIssue';
+import CreateIssue from './containers/CreateIssue/CreateIssue';
 import ModalD from './components/ModalD/ModalD'
 
 

@@ -7,7 +7,7 @@ const issuesData = [{
   },
   {
     id: 879231,
-    summary: "Some Issue",
+    summary: "ask issue",
     priority: { label: 'Low', value: '1' },
     assigneeId: 25,
     labelIds: [1, 3]
@@ -28,7 +28,7 @@ const issuesData = [{
   },
   {
     id: 87914,
-    summary: "coffee time",
+    summary: "Beta issue",
     priority: { label: 'Low', value: '1' },
     assigneeId: 268,
     labelIds: [3]
@@ -45,6 +45,13 @@ const issuesData = [{
     summary: "last issue",
     priority: { label: 'Low', value: '1' },
     assigneeId: 268,
+    labelIds: [2]
+  },
+  {
+    id: 872523,
+    summary: "yarn issue",
+    priority: { label: 'High', value: '3' },
+    assigneeId: 153,
     labelIds: [2]
   }]
 
