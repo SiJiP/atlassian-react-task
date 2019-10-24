@@ -36,6 +36,16 @@ const DefaultForm = (props) => {
         }
     }
 
+    const checked = {1: false, 2: false, 3: false}
+    const labelChecked = () => {
+        if(props.issueData){
+            props.issueData.labelIds.forEach( el => {
+                checked[+el] = true
+            })
+        }
+    }
+
+
     return (
         <Form onSubmit={props.onSubmit}>
             {({ formProps }) => {
@@ -52,40 +62,21 @@ const DefaultForm = (props) => {
                             {({ fieldProps }) => <Select {...fieldProps} options={Priority} />}
                         </Field>
                         <Fieldset legend="Labels">
-
-                            <CheckboxField name="labelIds" value="1" >
+                            {labelChecked()}
+                            <CheckboxField name="labelIds" value="1" defaultIsChecked={checked[1]}>
                                 {({ fieldProps }) => {
-                                    let res = false;
-                                    if (props.issueData && props.issueData.labelIds) {
-                                        res = props.issueData.labelIds.some(el => {
-                                            return el.toString() === fieldProps.value
-                                        })
-
-                                    }
-                                    return <Checkbox {...fieldProps} label="Label 1" defaultChecked={res} />
+                                    return <Checkbox {...fieldProps} label="Label 1" />
                                 }
                                 }
                             </CheckboxField>
-                            <CheckboxField name="labelIds" value="2" >
+                            <CheckboxField name="labelIds" value="2" defaultIsChecked={checked[2]}>
                                 {({ fieldProps }) => {
-                                    let res = false;
-                                    if (props.issueData && props.issueData.labelIds) {
-                                        res = props.issueData.labelIds.some(el => {
-                                            return el.toString() === fieldProps.value
-                                        })
-                                    }
-                                    return <Checkbox {...fieldProps} defaultChecked={res} label="Another Label" />
+                                    return <Checkbox {...fieldProps} label="Another Label" />
                                 }}
                             </CheckboxField>
-                            <CheckboxField name="labelIds" value="3">
+                            <CheckboxField name="labelIds" value="3" defaultIsChecked={checked[3]}>
                                 {({ fieldProps }) => {
-                                    let res = false;
-                                    if (props.issueData && props.issueData.labelIds) {
-                                        res = props.issueData.labelIds.some(el => {
-                                            return el.toString() === fieldProps.value
-                                        })
-                                    }
-                                    return <Checkbox {...fieldProps} label="New Label" defaultChecked={res} />
+                                    return <Checkbox {...fieldProps} label="New Label" />
                                 }}
                             </CheckboxField>
                         </Fieldset>
